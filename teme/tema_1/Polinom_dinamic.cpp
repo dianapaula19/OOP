@@ -15,6 +15,9 @@ double Polinom_dinamic::Calcul(int x){
     return value;
 
 }
+node* Polinom_dinamic::GetNode(){
+    return head;
+}
 void Polinom_dinamic::AddElement(double coef, double exp){
 
     if(coef == 0){
@@ -252,7 +255,7 @@ Polinom_dinamic::~Polinom_dinamic(){
     p = head;
     while( head != NULL ){
         cout << "Elementul";
-        cout <<" ("<<head->coeficient << ", " << head->exponent << ") a fost sters" << endl;
+        cout <<"( "<<head->coeficient << ", " << head->exponent << " ) a fost sters" << endl;
         head = head->next;
         delete p;
         p = head;

@@ -1,12 +1,12 @@
 # depslib dependency file v1.0
-1572347296 source:c:\users\diana\documents\oop\teme\tema_1\main.cpp
+1572350061 source:c:\users\diana\documents\oop\teme\tema_1\main.cpp
 	<iostream>
 	"Polinom_dinamic.h"
 
-1572348999 source:c:\users\diana\documents\oop\teme\tema_1\polinom_dinamic.cpp
+1572349983 source:c:\users\diana\documents\oop\teme\tema_1\polinom_dinamic.cpp
 	<iostream>
 	<math.h>
 	"Polinom_dinamic.h"
 
-1572347277 c:\users\diana\documents\oop\teme\tema_1\polinom_dinamic.h
+1572351757 c:\users\diana\documents\oop\teme\tema_1\polinom_dinamic.h
 

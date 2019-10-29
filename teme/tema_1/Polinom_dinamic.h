@@ -10,12 +10,13 @@ struct node{
 class Polinom_dinamic{
 
 private:
-    node* head;
-    node* tail;
+    node* head, *tail;
 public:
+    node* GetNode();
     Polinom_dinamic();
     ~Polinom_dinamic();
     Polinom_dinamic(const Polinom_dinamic&);
+
     void AddElement(double, double);
     double Calcul(int);
     void ReadAList(int);
