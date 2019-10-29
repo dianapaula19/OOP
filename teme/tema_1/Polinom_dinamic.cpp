@@ -251,6 +251,8 @@ Polinom_dinamic::~Polinom_dinamic(){
     node* p = new node;
     p = head;
     while( head != NULL ){
+        cout << "Elementul";
+        cout <<" ("<<head->coeficient << ", " << head->exponent << ") a fost sters" << endl;
         head = head->next;
         delete p;
         p = head;

@@ -9,7 +9,5 @@ int main()
     cout << p1;
     cin >> p2;
     cout << p2;
-    p1 = p2;
-    cout << p1;
     return 0;
 }
