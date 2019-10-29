@@ -162,6 +162,11 @@ Polinom_dinamic& Polinom_dinamic::operator * (Polinom_dinamic& p1){
         while(aux != NULL){
             double product_coef = p->coeficient * aux->coeficient;
             double product_exp = p->exponent * aux->exponent;
+            if(p->exponent == 0){
+                product_exp = aux->exponent;
+            }else if(aux->exponent == 0){
+                product_exp = p->exponent;
+            }
                 result->AddElement(product_coef, product_exp);
             aux = aux->next;
         }
@@ -172,7 +177,6 @@ Polinom_dinamic& Polinom_dinamic::operator * (Polinom_dinamic& p1){
     d = new node;
     p = new node;
     p = result->head;
-    cout << result;
     while(p != NULL && p->next != NULL){
         if(p->exponent == p->next->exponent){
             p->coeficient = p->coeficient + p->next->coeficient;
