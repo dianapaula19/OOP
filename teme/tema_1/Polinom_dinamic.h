@@ -16,10 +16,12 @@ public:
     Polinom_dinamic();
     ~Polinom_dinamic();
     Polinom_dinamic(const Polinom_dinamic&);
-
     void AddElement(double, double);
     double Calcul(int);
-    void ReadAList(int);
+    void List();
+    static Polinom_dinamic* ReadObjects(int);
+    node* GetNodeHead();
+    node* GetNodeTail();
     Polinom_dinamic& operator + (Polinom_dinamic&);
     Polinom_dinamic& operator - (Polinom_dinamic&);
     Polinom_dinamic& operator * (Polinom_dinamic&);

@@ -15,8 +15,14 @@ double Polinom_dinamic::Calcul(int x){
     return value;
 
 }
-node* Polinom_dinamic::GetNode(){
+Polinom_dinamic::Polinom_dinamic(const Polinom_dinamic& p){
+
+}
+node* Polinom_dinamic::GetNodeHead(){
     return head;
+}
+node* Polinom_dinamic::GetNodeTail(){
+    return tail;
 }
 void Polinom_dinamic::AddElement(double coef, double exp){
 
@@ -52,8 +58,11 @@ void Polinom_dinamic::AddElement(double coef, double exp){
             }
     }
 }
-void Polinom_dinamic::ReadAList(int n){
+void Polinom_dinamic::List(){
 
+    int n;
+    cout << "Number of Elements: " << endl;
+    cin >> n;
     for(int i = 0; i < n; i++){
         cout << "New Element: ";
         double coef, exp;
@@ -66,18 +75,28 @@ void Polinom_dinamic::ReadAList(int n){
     if(p->coeficient >= 0){
         cout << p->coeficient << "*X^" << p->exponent;
     }else{
-        cout << "- " << p->coeficient << "*X^" << p->exponent;
+        cout << "(" << p->coeficient << ")*X^" << p->exponent;
     }
     while(p->next != NULL){
         p = p->next;
         if(p->coeficient > 0){
         cout << " + " << p->coeficient << "*X^" << p->exponent;
         }else{
-        cout << " - "<< p->coeficient << "*X^" << p->exponent;
+        cout << " + ("<< p->coeficient << ")*X^" << p->exponent;
         }
     }
     }
     cout << endl;
+}
+Polinom_dinamic* Polinom_dinamic::ReadObjects(int n){
+
+    Polinom_dinamic* objects = new Polinom_dinamic [n];
+    for(int i = 0; i < n; i++){
+        cout << "New Object" << endl;
+        objects[i].List();
+    }
+    return objects;
+
 }
 Polinom_dinamic& Polinom_dinamic::operator + (Polinom_dinamic& p1){
 
@@ -88,11 +107,9 @@ Polinom_dinamic& Polinom_dinamic::operator + (Polinom_dinamic& p1){
     q = head;
     while(p != NULL && q != NULL){
         if(p->exponent > q->exponent){
-            cout << p->coeficient << " " << q->coeficient << endl;
             result->AddElement(p->coeficient, p->exponent);
             p = p->next;
         }else if(q->exponent > p->exponent){
-            cout << p->coeficient << " " << q->coeficient << endl;
             result->AddElement(q->coeficient, q->exponent);
             q = q->next;
         }else{
@@ -100,7 +117,6 @@ Polinom_dinamic& Polinom_dinamic::operator + (Polinom_dinamic& p1){
             if(sum != 0){
                 result->AddElement(sum, p->exponent);
             }
-            cout << p->coeficient << " " << q->coeficient << endl;
             p = p->next;
             q = q->next;
         }
@@ -227,28 +243,6 @@ istream & operator >> (istream& in, Polinom_dinamic& p){
     }
     return in;
 }
-Polinom_dinamic::Polinom_dinamic(const Polinom_dinamic& p){
-
-    node* c = new node;
-    c = p.head;
-    while(c != NULL && head != NULL){
-        head->coeficient = c->coeficient;
-        head->exponent = c->exponent;
-        c = c->next;
-        head = head->next;
-    }
-    node* q = new node;
-    q = head;
-    while(head != NULL){
-        head = head->next;
-        delete q;
-        q = head;
-    }
-    while(c != NULL){
-        this->AddElement(c->coeficient, c->exponent);
-        c = c->next;
-    }
-}
 Polinom_dinamic::Polinom_dinamic(){
 
     head = NULL;
@@ -257,6 +251,7 @@ Polinom_dinamic::Polinom_dinamic(){
 }
 Polinom_dinamic::~Polinom_dinamic(){
 
+    cout << "Farewell, object!\nYou will be missed" << endl;
     if(head != NULL){
     node* p = new node;
     p = head;
@@ -268,7 +263,6 @@ Polinom_dinamic::~Polinom_dinamic(){
         p = head;
     }
     }
-    cout << "Au revoir, object" << endl;
 
 }
 
