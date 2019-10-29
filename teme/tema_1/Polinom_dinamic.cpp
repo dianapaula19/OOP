@@ -24,8 +24,6 @@ void Polinom_dinamic::AddElement(double coef, double exp){
         return;
     }
     node* q = new node;
-    node* c = new node;
-    node* p = new node;
     q->coeficient = coef;
     q->exponent = exp;
     q->next = NULL;
@@ -34,14 +32,17 @@ void Polinom_dinamic::AddElement(double coef, double exp){
         tail = q;
         q = NULL;
     }else{
-        c = head;
         if(head->exponent < exp){
             q->next = head;
             head = q;
+
         }else if(tail->exponent > exp){
             tail->next = q;
             tail = q;
         }else{
+            node* c = new node;
+            node* p = new node;
+            c = head;
             while(c->next != NULL && c->exponent > exp){
             p = c;
             c = c->next;
@@ -124,13 +125,13 @@ Polinom_dinamic& Polinom_dinamic::operator - (Polinom_dinamic& p1){
     q = head;
     while(p != NULL && q != NULL){
         if(p->exponent > q->exponent){
-            result->AddElement(p->coeficient, p->exponent);
+            result->AddElement(-p->coeficient, p->exponent);
             p = p->next;
         }else if(q->exponent > p->exponent){
             result->AddElement(q->coeficient, q->exponent);
             q = q->next;
         }else{
-            double diff = p->coeficient - q->coeficient;
+            double diff = q->coeficient - p->coeficient;
             if(diff != 0){
                 result->AddElement(diff, p->exponent);
             }
@@ -139,7 +140,7 @@ Polinom_dinamic& Polinom_dinamic::operator - (Polinom_dinamic& p1){
         }
     }
     while(p != NULL){
-        result->AddElement(p->coeficient, p->exponent);
+        result->AddElement(-p->coeficient, p->exponent);
         p = p->next;
     }
     while(q != NULL){
@@ -187,18 +188,20 @@ Polinom_dinamic& Polinom_dinamic::operator * (Polinom_dinamic& p1){
 
 ostream & operator << (ostream& out, Polinom_dinamic& p){
 
-    if(p.head != NULL){
-    if(p.head->coeficient >= 0){
-        cout << p.head->coeficient << "*X^" << p.head->exponent;
-    }else if(p.head->coeficient < 0){
-        cout << "- " << p.head->coeficient << "*X^" << p.head->exponent;
+    node* q = new node;
+    q = p.head;
+    if(q != NULL){
+    if(q->coeficient >= 0){
+        cout << q->coeficient << "*X^" << q->exponent;
+    }else if(q->coeficient < 0){
+        cout << "(" << q->coeficient << ")*X^" << q->exponent;
     }
-    while(p.head->next != NULL){
-        p.head = p.head->next;
-        if(p.head->coeficient > 0){
-        cout << " + " << p.head->coeficient << "*X^" << p.head->exponent;
-        }else if(p.head->coeficient < 0){
-        cout << " - "<< p.head->coeficient << "*X^" << p.head->exponent;
+    while(q->next != NULL){
+        q = q->next;
+        if(q->coeficient > 0){
+        cout << " + " << q->coeficient << "*X^" << q->exponent;
+        }else if(q->coeficient < 0){
+        cout << " + ("<< q->coeficient << ")*X^" << q->exponent;
         }
     }
     }

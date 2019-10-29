@@ -4,11 +4,13 @@
 using namespace std;
 int main()
 {
-    Polinom_dinamic p1, p2;
+    Polinom_dinamic p1, p2, p3;
     cin >> p1;
     cout << p1;
-    cout << p1.GetNode()->coeficient <<" "<< p1.GetNode()->exponent << endl;
     cin >> p2;
     cout << p2;
+    p3 = p1 * p2;
+    cout << p3;
+
     return 0;
 }
