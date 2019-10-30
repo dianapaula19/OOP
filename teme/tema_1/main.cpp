@@ -9,5 +9,11 @@ int main()
     cout << "Number of objects: " << endl;
     cin >> n;
     objects = Polinom_dinamic::ReadObjects(n);
+    cout << (objects[0] + objects[1]);
+    cout << (objects[0] - objects[1]);
+    cout << (objects[0] * objects[1]);
+    int x;
+    cin >> x;
+    cout << objects[0].Calcul(x);
     return 0;
 }

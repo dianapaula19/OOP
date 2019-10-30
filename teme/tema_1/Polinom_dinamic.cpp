@@ -104,10 +104,8 @@ Polinom_dinamic* Polinom_dinamic::ReadObjects(int n){
 Polinom_dinamic& Polinom_dinamic::operator + (const Polinom_dinamic& p1){
 
     Polinom_dinamic* result = new Polinom_dinamic;
-    node* p = new node;
-    p = p1.head;
-    node* q = new node;
-    q = head;
+    node* p = p1.head;
+    node* q = head;
     while(p != NULL && q != NULL){
         if(p->exponent > q->exponent){
             result->AddElement(p->coeficient, p->exponent);
@@ -138,10 +136,8 @@ Polinom_dinamic& Polinom_dinamic::operator + (const Polinom_dinamic& p1){
 Polinom_dinamic& Polinom_dinamic::operator - (const Polinom_dinamic& p1){
 
     Polinom_dinamic *result = new Polinom_dinamic;
-    node* p = new node;
-    p = p1.head;
-    node* q =  new node;
-    q = head;
+    node* p = p1.head;
+    node* q =  head;
     while(p != NULL && q != NULL){
         if(p->exponent > q->exponent){
             result->AddElement(-p->coeficient, p->exponent);
@@ -173,11 +169,9 @@ Polinom_dinamic& Polinom_dinamic::operator - (const Polinom_dinamic& p1){
 Polinom_dinamic& Polinom_dinamic::operator * (const Polinom_dinamic& p1){
 
     Polinom_dinamic* result = new Polinom_dinamic;
-    node* p = new node;
-    p = p1.head;
+    node* p = p1.head;
     while(p != NULL){
-        node* aux = new node;
-        aux = head;
+        node* aux = head;
         while(aux != NULL){
             double product_coef = p->coeficient * aux->coeficient;
             double product_exp = p->exponent * aux->exponent;
@@ -193,8 +187,6 @@ Polinom_dinamic& Polinom_dinamic::operator * (const Polinom_dinamic& p1){
         p = p->next;
     }
     node *d;
-    d = new node;
-    p = new node;
     p = result->head;
     while(p != NULL && p->next != NULL){
         if(p->exponent == p->next->exponent){
