@@ -183,7 +183,6 @@ Polinom_dinamic& Polinom_dinamic::operator * (const Polinom_dinamic& p1){
                 result->AddElement(product_coef, product_exp);
             aux = aux->next;
         }
-        delete aux;
         p = p->next;
     }
     node *d;
