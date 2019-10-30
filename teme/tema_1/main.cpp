@@ -4,10 +4,10 @@
 using namespace std;
 int main()
 {
-    Polinom_dinamic p, q;
-    cin >> p;
-    cout << p;
-
-
+    Polinom_dinamic* objects;
+    int n;
+    cout << "Number of objects: " << endl;
+    cin >> n;
+    objects = Polinom_dinamic::ReadObjects(n);
     return 0;
 }

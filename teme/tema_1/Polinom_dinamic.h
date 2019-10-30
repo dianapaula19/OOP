@@ -12,19 +12,18 @@ class Polinom_dinamic{
 private:
     node* head, *tail;
 public:
-    node* GetNode();
     Polinom_dinamic();
-    ~Polinom_dinamic();
     Polinom_dinamic(const Polinom_dinamic&);
-    void AddElement(double, double);
-    double Calcul(int);
-    void List();
-    static Polinom_dinamic* ReadObjects(int);
+    ~Polinom_dinamic();
     node* GetNodeHead();
     node* GetNodeTail();
-    Polinom_dinamic& operator + (Polinom_dinamic&);
-    Polinom_dinamic& operator - (Polinom_dinamic&);
-    Polinom_dinamic& operator * (Polinom_dinamic&);
+    double Calcul(int);
+    void AddElement(double, double);
+    static Polinom_dinamic* ReadObjects(int);
+    Polinom_dinamic& operator + (const Polinom_dinamic&);
+    Polinom_dinamic& operator - (const Polinom_dinamic&);
+    Polinom_dinamic& operator * (const Polinom_dinamic&);
+    Polinom_dinamic& operator = (const Polinom_dinamic&);
     friend ostream& operator << (ostream& out, Polinom_dinamic& p);
     friend istream& operator >> (istream& in, Polinom_dinamic& p);
 
