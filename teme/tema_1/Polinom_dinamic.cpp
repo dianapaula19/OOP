@@ -23,6 +23,15 @@ Polinom_dinamic::Polinom_dinamic(const Polinom_dinamic& p){
     }
 
 }
+Polinom_dinamic::Polinom_dinamic(bool to_read_or_not_to_read_from_a_file){
+
+    if(to_read_or_not_to_read_from_a_file == true){
+        //no idea
+    }else{
+        //no idea
+    }
+
+}
 Polinom_dinamic::~Polinom_dinamic(){
 
     cout << "So long, object!\nYou will be missed" << endl;
@@ -71,17 +80,17 @@ void Polinom_dinamic::AddElement(double coef, double exp){
         tail = q;
         q = NULL;
     }else{
-        if(head->exponent < exp){
+        if(head->exponent <= exp){
             q->next = head;
             head = q;
 
-        }else if(tail->exponent > exp){
+        }else if(tail->exponent >= exp){
             tail->next = q;
             tail = q;
         }else{
             node* c = head;
             node* p;
-            while(c->next != NULL && c->exponent > exp){
+            while(c->next != NULL && c->exponent >= exp){
             p = c;
             c = c->next;
             }
@@ -90,15 +99,13 @@ void Polinom_dinamic::AddElement(double coef, double exp){
             }
     }
 }
-Polinom_dinamic* Polinom_dinamic::ReadObjects(int n){
+void Polinom_dinamic::ReadObjects(int n, Polinom_dinamic* objects){
 
-    Polinom_dinamic* objects = new Polinom_dinamic [n];
     for(int i = 0; i < n; i++){
         cout << "New Object" << endl;
         cin >> objects[i];
         cout << objects[i];
     }
-    return objects;
 
 }
 Polinom_dinamic& Polinom_dinamic::operator + (const Polinom_dinamic& p1){
@@ -135,40 +142,40 @@ Polinom_dinamic& Polinom_dinamic::operator + (const Polinom_dinamic& p1){
 }
 Polinom_dinamic& Polinom_dinamic::operator - (const Polinom_dinamic& p1){
 
-    Polinom_dinamic *result = new Polinom_dinamic;
+    Polinom_dinamic result;
     node* p = p1.head;
     node* q =  head;
     while(p != NULL && q != NULL){
         if(p->exponent > q->exponent){
-            result->AddElement(-p->coeficient, p->exponent);
+            result.AddElement(-p->coeficient, p->exponent);
             p = p->next;
         }else if(q->exponent > p->exponent){
-            result->AddElement(q->coeficient, q->exponent);
+            result.AddElement(q->coeficient, q->exponent);
             q = q->next;
         }else{
             double diff = q->coeficient - p->coeficient;
             if(diff != 0){
-                result->AddElement(diff, p->exponent);
+                result.AddElement(diff, p->exponent);
             }
             p = p->next;
             q = q->next;
         }
     }
     while(p != NULL){
-        result->AddElement(-p->coeficient, p->exponent);
+        result.AddElement(-p->coeficient, p->exponent);
         p = p->next;
     }
     while(q != NULL){
-        result->AddElement(q->coeficient, q->exponent);
+        result.AddElement(q->coeficient, q->exponent);
         q = q->next;
     }
 
-    return *result;
+    return result;
 
 }
 Polinom_dinamic& Polinom_dinamic::operator * (const Polinom_dinamic& p1){
 
-    Polinom_dinamic* result = new Polinom_dinamic;
+    Polinom_dinamic result;
     node* p = p1.head;
     while(p != NULL){
         node* aux = head;
@@ -180,13 +187,13 @@ Polinom_dinamic& Polinom_dinamic::operator * (const Polinom_dinamic& p1){
             }else if(aux->exponent == 0){
                 product_exp = p->exponent;
             }
-                result->AddElement(product_coef, product_exp);
+                result.AddElement(product_coef, product_exp);
             aux = aux->next;
         }
         p = p->next;
     }
     node *d;
-    p = result->head;
+    p = result.head;
     while(p != NULL && p->next != NULL){
         if(p->exponent == p->next->exponent){
             p->coeficient = p->coeficient + p->next->coeficient;
@@ -196,7 +203,7 @@ Polinom_dinamic& Polinom_dinamic::operator * (const Polinom_dinamic& p1){
         }
         p = p->next;
     }
-    return *result;
+    return result;
 
 }
 Polinom_dinamic& Polinom_dinamic::operator = (const Polinom_dinamic& p1){
@@ -207,6 +214,48 @@ Polinom_dinamic& Polinom_dinamic::operator = (const Polinom_dinamic& p1){
     return *this;
 
 }
+Polinom_dinamic& Polinom_dinamic::operator--(){
+
+    Polinom_dinamic temp;
+    node* p = head;
+    while(p != NULL){
+        temp.AddElement(--p->coeficient, --p->exponent);
+        p = p->next;
+    }
+    return temp;
+}
+Polinom_dinamic& Polinom_dinamic::operator--(int){
+
+    Polinom_dinamic temp;
+    node* p = head;
+    while(p != NULL){
+        temp.AddElement(p->coeficient--, p->exponent--);
+        p = p->next;
+    }
+    return temp;
+
+}
+bool Polinom_dinamic::operator != (const Polinom_dinamic& p){
+
+    node* temp1 = head;
+    node* temp2 = p.head;
+    while(temp1 != NULL && temp2 != NULL){
+        if(temp1->coeficient != temp2->coeficient){
+            return true;
+        }
+        if(temp1->exponent != temp2->exponent){
+            return true;
+        }
+        temp1 = temp1->next;
+        temp2 = temp2->next;
+    }
+    if(temp1 != NULL || temp2 != NULL){
+        return true;
+    }
+    return false;
+
+}
+
 ostream & operator << (ostream& out, Polinom_dinamic& p){
 
     node* q = p.head;
