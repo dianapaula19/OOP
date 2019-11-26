@@ -1,6 +1,7 @@
 Proiect 1: Clasa Polinom Dinamic (Tema 14)
 
 Proiect 2: Magazin (Tema 18)
+	
 	Descriere:
 		* utilizatorul nu are voie sa adauge produse identice in stoc
 		* clientul trebuie sa mentioneze cel putin tipul de produs pe care vrea sa-l achizitioneze
