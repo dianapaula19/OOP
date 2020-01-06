@@ -95,7 +95,7 @@ void Casa::citire(std::istream& in) {
             suprafataEtaje.push_back(suprafataEtaj);
         }
     } catch(int x) {
-        std::cout << "Numarul de etaje si suprafata pe fiecare etaj trebuie sa fie un numar natural\n";
+        std::cout << "Numarul de etaje si suprafata pe fiecare etaj trebuie sa fie numere naturale\n";
     }
 }
 
